@@ -24,11 +24,9 @@ class FormValidator {
   
     _setEventListeners() {
         this._inputList = Array.from(
-            this._formEl.querySelectorAll(settings.inputSelector),
-          );
           this._buttonElement = this._formEl.querySelector(
             settings.submitButtonSelector,
-          );
+          ));
         
           this.toggleButtonState(this._inputList, this._buttonElement, settings);
         
@@ -41,7 +39,6 @@ class FormValidator {
         }
         
     enableValidation() {
-      console.log("enableValidation");
         this._formEl.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
