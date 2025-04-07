@@ -9,7 +9,6 @@ class FormValidator {
     }
   
     _checkInputValidity(inputElement) {
-      console.log("checkInputValidity");
         if (!inputElement.validity.valid) {
             showInputError(
               formElement,
@@ -24,11 +23,10 @@ class FormValidator {
   
     _setEventListeners() {
         this._inputList = Array.from(
-          this._buttonElement = this._formEl.querySelector(
-            settings.submitButtonSelector,
+          this._formEl.querySelectorAll(
+            this._inputSelector
           ));
-        
-          this.toggleButtonState(this._inputList, this._buttonElement, settings);
+          this._buttonElement = this._formEl.querySelector(this._submitButtonSelector);
         
           this._inputList.forEach((inputElement) => {
             inputElement.addEventListener("input", () => {
