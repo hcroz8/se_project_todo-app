@@ -25,22 +25,17 @@ const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");
   const todoElement = todo.getView();
   return todoElement;
-
-   todoCheckboxEl.id = `todo-${data.id}`;
-   todoLabel.setAttribute("for", `todo-${data.id}`);
-
-   const dueDate = new Date(data.date);
-   if (!isNaN(dueDate)) {
-   todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
-   year: "numeric",
-   month: "short",
-   day: "numeric",
-    })}`;
-   }
-
-   todoDeleteBtn.addEventListener("click", () => {
-     todoElement.remove();
-   });
+  
+  todoCheckboxEl.id = `todo-${data.id}`;
+  todoLabel.setAttribute("for", `todo-${data.id}`);
+  
+  const dueDate = new Date(data.date);
+  
+  
+  
+  todoDeleteBtn.addEventListener("click", () => {
+    todoElement.remove();
+  });
 };
 
 addTodoButton.addEventListener("click", () => {
@@ -62,6 +57,23 @@ addTodoForm.addEventListener("submit", (evt) => {
   const values = { name, date };
   const todo = generateTodo(values);
   todosList.append(todo);
+  closeModal(addTodoPopup);
+});
+
+const handleEsc = (evt) => {
+  if (evt.key === "Escape") {
+    closeModal(addTodoPopup);
+  }
+};
+const closeOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closeModal(addTodoPopup);
+  }
+};
+
+addTodoPopup.addEventListener("click", closeOverlay);
+addTodoPopup.addEventListener("keydown", handleEsc);
+addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
  

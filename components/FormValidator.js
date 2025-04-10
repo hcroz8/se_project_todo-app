@@ -7,7 +7,42 @@ class FormValidator {
         this._inactiveButtonClass = settings.inactiveButtonClass;
         this._formEl = formEl;
     }
-  
+    // Create/Copy missing function from the validate.js file
+    // Reset the form when close the modal
+    // 
+
+    _showInputError = (formElement, inputElement, errorMessage, settings) => {
+      const errorElementId = `#${inputElement.id}-error`;
+      const errorElement = formElement.querySelector(errorElementId);
+      inputElement.classList.add(settings.inputErrorClass);
+      errorElement.textContent = errorMessage;
+      errorElement.classList.add(settings.errorClass);
+    };
+
+    _hideInputError = (formElement, inputElement, settings) => {
+      const errorElementId = `#${inputElement.id}-error`;
+      const errorElement = formElement.querySelector(errorElementId);
+      inputElement.classList.remove(settings.inputErrorClass);
+      errorElement.classList.remove(settings.errorClass);
+      errorElement.textContent = "";
+    };
+
+    _hasInvalidInput = (inputList) => {
+      return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+      });
+    };
+    
+    _toggleButtonState = (inputList, buttonElement, settings) => {
+      if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add(settings.inactiveButtonClass);
+        buttonElement.disabled = true;
+      } else {
+        buttonElement.classList.remove(settings.inactiveButtonClass);
+        buttonElement.disabled = false;
+      }
+    };
+    
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
             showInputError(
@@ -44,5 +79,11 @@ class FormValidator {
         console.log(">>>>>", this._formEl);
     }
   }
+
+  resetValidation = (formEl, inputList, settings) => {
+    inputList.forEach((input) => {
+      hideInputError(formEl, input, settings);
+    });
+  };
   
   export default FormValidator;

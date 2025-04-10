@@ -1,10 +1,10 @@
 # Simple Todo App
-
-Give a brief description of the project here. Feel free to give it a different name.
+Stay focused, organized, and productive with this checklist app. Whether it's for a vacation itinerary or a major work project, this app is here to help.
 
 ## Functionality
 
 Give a more detailed explanation of the project and its functionality.
+This checklist app offers a simple yet well organized date and completion format for all your upcoming events.
 
 ## Technology
 

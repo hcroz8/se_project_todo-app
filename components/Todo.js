@@ -33,8 +33,17 @@ class Todo {
     this._todoDeleteBtn = todoDeleteBtn;
 
     todoNameEl.textContent = this._data.name;
-    // Apply date formatting
-    todoDate.textContent = this._data.date
+
+    if (!isNaN(this._data.date)) {
+      todoDate.textContent = `Due: ${this._data.date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`;
+    }
+    else {
+      todoDate.textContent = "No due date"
+    };
 
     this._generateCheckboxEl();
     this._setEventListener();
@@ -44,3 +53,4 @@ class Todo {
 }
 
 export default Todo;
+
