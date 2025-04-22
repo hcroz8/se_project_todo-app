@@ -14,4 +14,4 @@ Give a description of the technologies and techniques used. Pictures, GIFs, or s
 
 This project is deployed on GitHub Pages:
 
-(http://127.0.0.1:5500/index.html)
+(https://github.com/hcroz8/se_project_todo-app.git)
