@@ -11,12 +11,12 @@ class FormValidator {
     // Reset the form when close the modal
     // 
 
-    _showInputError = (formElement, inputElement, errorMessage, settings) => {
+    _showInputError = (inputElement, errorMessage, settings) => {
       const errorElementId = `#${inputElement.id}-error`;
-      const errorElement = formElement.querySelector(errorElementId);
-      inputElement.classList.add(settings.inputErrorClass);
+      const errorElement = this.formEL.querySelector(errorElementId);
+      inputElement.classList.add(this.inputErrorClass);
       errorElement.textContent = errorMessage;
-      errorElement.classList.add(settings.errorClass);
+      errorElement.classList.add(this.inactiveButtonClass);
     };
 
     _hideInputError = (formElement, inputElement, settings) => {
@@ -45,14 +45,14 @@ class FormValidator {
     
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
-            showInputError(
-              formElement,
+            this._showInputError(
+              formEl,
               inputElement,
               inputElement.validationMessage,
               settings,
             );
           } else {
-            hideInputError(formElement, inputElement, settings);
+            this._hideInputError(formElement, inputElement, settings);
           }
         };
   
@@ -71,7 +71,7 @@ class FormValidator {
           });
         }
         
-    enableValidation() {
+    _enableValidation() {
         this._formEl.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
@@ -80,10 +80,10 @@ class FormValidator {
     }
   }
 
-  resetValidation = (formEl, inputList, settings) => {
+  const resetValidation = (formEl, inputList, config) => {
     inputList.forEach((input) => {
-      hideInputError(formEl, input, settings);
+      hideInputError(formEl, input, config);
     });
   };
-  
+
   export default FormValidator;

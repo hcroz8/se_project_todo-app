@@ -29,3 +29,5 @@ const validationConfig = {
 };
 
 export { initialTodos, validationConfig };
+
+// create instannce of FormValidator -> validationConfig
