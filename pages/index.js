@@ -83,4 +83,4 @@ initialTodos.forEach((item) => {
 });
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
-formValidator.enableValidation();
+formValidator._enableValidation();
