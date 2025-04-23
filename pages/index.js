@@ -14,6 +14,10 @@ const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
+  if (modal === addTodoPopup) {
+    formValidator.resetValidation();
+    addTodoForm.reset();
+  }
 };
 
 const closeModal = (modal) => {
@@ -58,6 +62,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   const todo = generateTodo(values);
   todosList.append(todo);
   closeModal(addTodoPopup);
+  addTodoForm.reset(); 
 });
 
 const handleEsc = (evt) => {

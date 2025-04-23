@@ -80,5 +80,6 @@ class FormValidator {
       });
       this._toggleButtonState(this._inputList, this._buttonElement);
   };
+}
 
   export default FormValidator;
