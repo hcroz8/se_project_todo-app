@@ -5,7 +5,7 @@ import FormValidator from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
@@ -14,10 +14,6 @@ const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
-  if (modal === addTodoPopup) {
-    formValidator.resetValidation();
-    addTodoForm.reset();
-  }
 };
 
 const closeModal = (modal) => {
@@ -29,17 +25,6 @@ const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");
   const todoElement = todo.getView();
   return todoElement;
-  
-  todoCheckboxEl.id = `todo-${data.id}`;
-  todoLabel.setAttribute("for", `todo-${data.id}`);
-  
-  const dueDate = new Date(data.date);
-  
-  
-  
-  todoDeleteBtn.addEventListener("click", () => {
-    todoElement.remove();
-  });
 };
 
 addTodoButton.addEventListener("click", () => {
@@ -58,11 +43,12 @@ addTodoForm.addEventListener("submit", (evt) => {
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
+  const id = uuidv4();
   const values = { name, date };
-  const todo = generateTodo(values);
+  renderTodo(values);
   todosList.append(todo);
   closeModal(addTodoPopup);
-  addTodoForm.reset(); 
+  formValidator.resetValidation(); 
 });
 
 const handleEsc = (evt) => {
@@ -77,15 +63,16 @@ const closeOverlay = (evt) => {
 };
 
 addTodoPopup.addEventListener("click", closeOverlay);
-addTodoPopup.addEventListener("keydown", handleEsc);
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopup);
-});
- 
-initialTodos.forEach((item) => {
+document.addEventListener("keydown", handleEsc);
+
+const renderTodo = (item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
+};
+ 
+initialTodos.forEach((item) => {
+  renderTodo(item);
 });
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
-formValidator._enableValidation();
+formValidator.enableValidation();
