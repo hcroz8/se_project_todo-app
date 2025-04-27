@@ -10,8 +10,7 @@ class Todo {
     });
    this._todoDeleteBtn.addEventListener("click", () => {
       this._todoElement.remove();
-    }
-    ); 
+    }); 
   }
 
   _generateCheckboxEl() {
@@ -34,7 +33,7 @@ class Todo {
 
     todoNameEl.textContent = this._data.name;
 
-    if (!isNaN(this._data.date)) {
+    if (this._data.date instanceof Date && !isNaN(this._data.date))  {
       todoDate.textContent = `Due: ${this._data.date.toLocaleString("en-US", {
         year: "numeric",
         month: "short",
