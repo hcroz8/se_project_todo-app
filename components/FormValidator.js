@@ -35,8 +35,8 @@ class FormValidator {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.disabled = false;
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = false;
     }
   };
 
@@ -79,5 +79,8 @@ class FormValidator {
     this._toggleButtonState();
   };
 }
+
+//const formValidator = new FormValidator(validationConfig, addTodoForm);
+//formValidator.enableValidation();
 
 export default FormValidator;

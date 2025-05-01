@@ -42,17 +42,11 @@ addTodoForm.addEventListener("submit", (evt) => {
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const values = { 
-    id: uuidv4(),
-    name, 
-    date,
-    completed: false
-  };
-  
+  const id = uuidv4();
+  const values = { name, date };
   renderTodo(values);
   closeModal(addTodoPopup);
-  formValidator.resetValidation();
-  addTodoForm.reset();
+  formValidator.resetValidation(); 
 });
 
 const handleEsc = (evt) => {
@@ -79,3 +73,4 @@ initialTodos.forEach((item) => {
 });
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
+formValidator.enableValidation();
