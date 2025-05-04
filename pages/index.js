@@ -43,7 +43,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const id = uuidv4();
-  const values = { name, date };
+  const values = { name, date, id };
   renderTodo(values);
   closeModal(addTodoPopup);
   formValidator.resetValidation(); 
@@ -54,13 +54,7 @@ const handleEsc = (evt) => {
     closeModal(addTodoPopup);
   }
 };
-const closeOverlay = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closeModal(addTodoPopup);
-  }
-};
 
-addTodoPopup.addEventListener("click", closeOverlay);
 document.addEventListener("keydown", handleEsc);
 
 const renderTodo = (item) => {
