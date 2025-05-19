@@ -12,10 +12,21 @@ const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 const section = new Section({
-  items: [], 
-  renderer: () => {},
+  items: [], initialTodos,
+  renderer: () => {
+    const todo = new Todo(item, "#todo-template");
+    const todoElement = todo.getView();
+    todosList.prepend(todoElement);
+  },
   containerSelector: ".todos__list",});
 
+const renderItems =  (items) => {
+  items.forEach((item) => {
+    const todo = new Todo(item, "#todo-template");
+    const todoElement = todo.getView();
+    todosList.prepend(todoElement);
+  });
+};
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
@@ -68,9 +79,10 @@ const renderTodo = (item) => {
   todosList.prepend(todo);
 };
  
-initialTodos.forEach((item) => {
-  renderTodo(item);
-});
+// initialTodos.forEach((item) => {
+  // const todo = generateTodo(item);
+  // todosList.append(todo);
+//});
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
