@@ -6,7 +6,6 @@ class PopupWithForm {
     this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
     this._submitButton = this._form.querySelector('.popup__submit-button');
   }
-}
 
   _getInputValues() {
     const formValues = {};
@@ -33,3 +32,4 @@ class PopupWithForm {
     this._popup.classList.remove('popup_opened');
     this._form.reset();
   }
+}

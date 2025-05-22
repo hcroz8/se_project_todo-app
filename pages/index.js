@@ -12,21 +12,21 @@ const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 const section = new Section({
-  items: [], initialTodos,
-  renderer: () => {
+  items: initialTodos,
+  renderer: (item) => {
     const todo = new Todo(item, "#todo-template");
     const todoElement = todo.getView();
     todosList.prepend(todoElement);
   },
-  containerSelector: ".todos__list",});
+  containerSelector: ".todos__list"});
 
-const renderItems =  (items) => {
-  items.forEach((item) => {
-    const todo = new Todo(item, "#todo-template");
-    const todoElement = todo.getView();
-    todosList.prepend(todoElement);
-  });
-};
+//const renderItems =  (items) => {
+ // items.forEach((item) => {
+   // const todo = new Todo(item, "#todo-template");
+   // const todoElement = todo.getView();
+   // todosList.prepend(todoElement);
+ // });
+//};
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
@@ -79,6 +79,7 @@ const renderTodo = (item) => {
   todosList.prepend(todo);
 };
  
+section.renderItems()
 // initialTodos.forEach((item) => {
   // const todo = generateTodo(item);
   // todosList.append(todo);
