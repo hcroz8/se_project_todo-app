@@ -51,20 +51,20 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
+//addTodoForm.addEventListener("submit", (evt) => {
+  //evt.preventDefault();
+  //const name = evt.target.name.value;
+  //const dateInput = evt.target.date.value;
 
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  //const date = new Date(dateInput);
+  //date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const id = uuidv4();
-  const values = { name, date, id };
-  renderTodo(values);
-  closeModal(addTodoPopup);
-  formValidator.resetValidation(); 
-});
+  //const id = uuidv4();
+  //const values = { name, date, id };
+  //renderTodo(values);
+  //closeModal(addTodoPopup);
+  //formValidator.resetValidation(); 
+//});
 
 const handleEsc = (evt) => {
   if (evt.key === "Escape") {
