@@ -3,6 +3,7 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+import TodoCounter from '../components/TodoCounter.js';
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -19,6 +20,8 @@ const section = new Section({
     todosList.prepend(todoElement);
   },
   containerSelector: ".todos__list"});
+
+const todoCounter = new TodoCounter;
 
 //const renderItems =  (items) => {
  // items.forEach((item) => {
