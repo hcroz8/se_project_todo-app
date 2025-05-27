@@ -14,11 +14,14 @@ class Popup {
         this._removeEventListeners();
     }
 
+    
+
     _handleEscapeClose = (evt) => {
         if (evt.key === "Escape") {
             this.close();
         }
     };
+
 
     setEventListeners() {
         this._popupElement.addEventListener("click", (evt) => {
@@ -31,3 +34,5 @@ class Popup {
 }
 
 export default Popup;
+
+// Move the event listener outside the class definition
