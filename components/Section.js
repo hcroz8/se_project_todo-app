@@ -16,10 +16,3 @@ class Section{
     }
 }
 export default Section;
-
-// const items = ['chicken', 'beef', 'pork'];
-// snack = []
-// const drinks = ['water', 'juice', 'soda'];
-//addItem({
-// snack: [], items
-// drinks})
