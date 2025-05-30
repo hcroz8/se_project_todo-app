@@ -19,26 +19,28 @@ const section = new Section({
 
 const todoCounter = new TodoCounter (initialTodos, ".counter__text");
 
-//const renderItems =  (items) => {
- // items.forEach((item) => {
-   // const todo = new Todo(item, "#todo-template");
-   // const todoElement = todo.getView();
-   // todosList.prepend(todoElement);
- // });
-//};
+const closeOverlay = (evt) => {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(addTodoPopup);
+  }
+  console.log("closeOverlay called");
+}
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
+  modal.addEventListener("click", closeOverlay);
+  console.log("openModal called");
 };
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
+  modal.removeEventListener("click", closeOverlay);
+  console.log("closeModal called");
 };
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
 }
-
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, (completed) => {
@@ -88,10 +90,9 @@ function renderTodo(item) {
 };
  
 section.renderItems()
-// initialTodos.forEach((item) => {
-  // const todo = generateTodo(item);
-  // todosList.append(todo);
-//});
+
+const PopupWithForm = new PopupWithForm('#add-todo-popup', handleFormSubmit);
+
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();

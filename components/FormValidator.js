@@ -80,7 +80,4 @@ class FormValidator {
   };
 }
 
-//const formValidator = new FormValidator(validationConfig, addTodoForm);
-//formValidator.enableValidation();
-
 export default FormValidator;

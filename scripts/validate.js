@@ -33,23 +33,6 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-/*
-_hasInvalidInput() {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-
-_toggleButtonState = () => {
-  if (this._hasInvalidInput()) {
-    this.buttonElement.classList.add(this.inactiveButtonClass);
-    this.buttonElement.disabled = true;
-  } else {
-    this.buttonElement.classList.remove(this.inactiveButtonClass);
-    this.buttonElement.disabled = false;
-  }
-};
-
-*/
 const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(settings.inactiveButtonClass);

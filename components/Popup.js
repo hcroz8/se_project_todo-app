@@ -35,4 +35,3 @@ class Popup {
 
 export default Popup;
 
-// Move the event listener outside the class definition
