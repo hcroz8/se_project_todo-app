@@ -4,17 +4,15 @@ class Popup {
     }
 
     open() {
-        this._popupElement = document.querySelector(popupSelector);
-        this._popupElement.classList.add("popup_opened");
-        this._setEventListeners();
+        this._popupElement.classList.add("popup_visible");
+        document.addEventListener("keydown", this._handleEscapeClose);
+        this.setEventListeners();
     }
 
     close() {
-        this._popupElement.classList.remove("popup_opened");
-        this._removeEventListeners();
+        this._popupElement.classList.remove("popup_visible");
+        document.removeEventListener("keydown", this._handleEscapeClose);
     }
-
-    
 
     _handleEscapeClose = (evt) => {
         if (evt.key === "Escape") {
@@ -22,10 +20,14 @@ class Popup {
         }
     };
 
-
     setEventListeners() {
         this._popupElement.addEventListener("click", (evt) => {
             if (evt.target.classList.contains("popup__close")) {
+                this.close();
+            }
+        })
+        this._popupElement.addEventListener("click", (evt) => {
+            if (evt.target.classList.contains("add-todo-popup")|| evt.target.classList.contains("popup")) {
                 this.close();
             }
         });
@@ -34,4 +36,3 @@ class Popup {
 }
 
 export default Popup;
-
