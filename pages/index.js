@@ -7,9 +7,8 @@ import TodoCounter from '../components/TodoCounter.js';
 import PopupWithForm from "../components/PopupWithForm.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-//const addTodoPopup = document.querySelector("#add-todo-popup");
+const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
-//const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
@@ -23,24 +22,9 @@ const todoCounter = new TodoCounter (initialTodos, ".counter__text");
 const newTodoForm = new PopupWithForm({popupSelector: '#add-todo-popup', handleFormSubmit: handleFormSubmit});
   newTodoForm.setEventListeners();
 
-const closeOverlay = (evt) => {
-  if (evt.target.classList.contains("modal")) {
-    closeModal(addTodoPopup);
-  }
-  console.log("closeOverlay called");
-}
-
-//const openModal = (modal) => {
-  //modal.classList.add("popup_visible");
-//   modal.addEventListener("click", closeOverlay);
-//   console.log("openModal called");
-// };
-
-// const closeModal = (modal) => {
-//   modal.classList.remove("popup_visible");
-//   modal.removeEventListener("click", closeOverlay);
-//   console.log("closeModal called");
-// };
+const closeModal = (modal) => {
+  modal.classList.remove("popup_visible");
+};
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
@@ -60,14 +44,10 @@ addTodoButton.addEventListener("click", () => {
  newTodoForm.open();
 });
 
-// addTodoCloseBtn.addEventListener("click", () => {
-//   closeModal(addTodoPopup);
-// });
 
-function handleFormSubmit(evt){
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
+function handleFormSubmit(formValues){
+  const name = formValues.name;
+  const dateInput = formValues.date;
 
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());

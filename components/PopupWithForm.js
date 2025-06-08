@@ -20,9 +20,10 @@ class PopupWithForm extends Popup {
 
   setEventListeners() {
     this._form.addEventListener('submit', (evt) => {
-      const formValues = this._getInputValues();
-      this._handleFormSubmit(formValues);
       evt.preventDefault();
+      const formValues = this._getInputValues();
+      console.log(evt, 'Form submitted with values:', formValues);
+      this._handleFormSubmit(formValues);
     });
     this._popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains("add-todo-popup")) {
@@ -31,16 +32,6 @@ class PopupWithForm extends Popup {
     });
     super.setEventListeners();
   }
-
-  // open() {
-  //   this._popup.classList.add('popup_visible');
-  //   this.setEventListeners();
-  // }
-  
-//   close() {
-//     this._popup.classList.remove('popup_visible');
-//     this._form.reset();
-//   }
  }
 
 export default PopupWithForm;
