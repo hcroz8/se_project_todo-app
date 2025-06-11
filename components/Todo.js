@@ -9,7 +9,7 @@ class Todo {
 
   _setEventListener() {
     this._todoDeleteBtnEl.addEventListener("click", () => {
-      this._onDelete();
+      this._onDelete(this._data.completed);
     });
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;

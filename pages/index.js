@@ -22,17 +22,13 @@ const todoCounter = new TodoCounter (initialTodos, ".counter__text");
 const newTodoForm = new PopupWithForm({popupSelector: '#add-todo-popup', handleFormSubmit: handleFormSubmit});
   newTodoForm.setEventListeners();
 
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
 }
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, (completed) => {
-    todoCounter.updateCompleted(completed);
+    if (completed);
     todoCounter.updateTotal(false);
     todo.delete();
   });
@@ -56,21 +52,13 @@ function handleFormSubmit(formValues){
   const values = { name, date, id };
   renderTodo(values);
   todoCounter.updateTotal(true);
-  closeModal(addTodoPopup);
+  newTodoForm.close();
   formValidator.resetValidation(); 
 };
 
-const handleEsc = (evt) => {
-  if (evt.key === "Escape") {
-    closeModal(addTodoPopup);
-  }
-};
-
-document.addEventListener("keydown", handleEsc);
-
 function renderTodo(item) {
   const todo = generateTodo(item);
-  todosList.prepend(todo);
+  section.addItem(todo);
 };
  
 section.renderItems()
