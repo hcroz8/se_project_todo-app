@@ -9,8 +9,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
-const todoTemplate = document.querySelector("#todo-template");
-const todosList = document.querySelector(".todos__list");
 
 const section = new Section({
   items: initialTodos,
@@ -28,9 +26,11 @@ function handleCheck(completed) {
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, (completed) => {
-    if (completed);
-    todoCounter.updateTotal(false);
-    todo.delete();
+    if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+  todoCounter.updateTotal(false);
+  todo.delete();
   });
   const todoElement = todo.getView();
   return todoElement;
